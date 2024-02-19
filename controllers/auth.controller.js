@@ -9,11 +9,12 @@ export const signup = async (req, res) => {
 
     const hashedPassword = bcryptjs.hashSync(password, 10)
 
+    const user = new User({ username, email, password: hashedPassword });
+
+
     try {
-        const user = new User({ username, email, password: hashedPassword });
         await user.save();
         res.status(201).json(user)
-        User = mongoose.model('User', userSchema)
     } catch (err) {
         res.status(409).json({ message: err.message })
     }
