@@ -5,7 +5,7 @@ export const signup = async (req, res) => {
     }
     
     try{
-        const user = await User.create({username, email, password});
+        const user = await new User.create({username, email, password});
         res.status(201).json(user)
     }catch(err){
         res.status(409).json({message: err.message})
