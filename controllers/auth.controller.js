@@ -8,6 +8,7 @@ export const signup = async (req, res) => {
     
     try{
         const user = await new User.create({username, email, password});
+        await user.save();
         res.status(201).json(user)
     }catch(err){
         res.status(409).json({message: err.message})
