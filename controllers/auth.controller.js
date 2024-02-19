@@ -8,6 +8,7 @@ export const signup = async (req, res) => {
     
     try{
         const user = new User({username, email, password});
+        console.log(user)
         await user.save();
         res.status(201).json(user)
     }catch(err){
