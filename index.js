@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose'
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
+import userRoute from './routes/user.route.js';
 
 dotenv.config()
 
@@ -19,6 +20,4 @@ app.listen(PORT, () => {
 })
 
 
-app.get('/', (req, res) => {
-    res.json({message: 'Hello World'})
-})
+app.use('/api/user', userRoute)
