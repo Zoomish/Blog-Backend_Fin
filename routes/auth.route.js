@@ -2,8 +2,6 @@ import express from 'express';
 
 const router = express.Router();
 
-router.post('/', (req, res) => {
-    
-})
+router.post('/signup', signup)
 
 export default router
