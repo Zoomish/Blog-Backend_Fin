@@ -1,7 +1,10 @@
 import express from 'express';
 import mongoose from 'mongoose'
+import dotenv from 'dotenv'
 
-mongoose.connect('mongodb+srv://admin:QXmYtmxGgbF2Q6rx@cluster0.lebi7tr.mongodb.net/?retryWrites=true&w=majority')
+dotenv.config()
+
+mongoose.connect(process.env.MONGO_URI)
 .then(()=>console.log('Connected to MongoDB'))
 const app = express();
 
