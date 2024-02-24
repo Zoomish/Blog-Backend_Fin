@@ -22,12 +22,12 @@ export const signup = async (req, res, next) => {
 }
 
 export const signin = async (req, res, next) => {
-    const { username, password } = req.body;
-    if (!username || !password) {
+    const { email, password } = req.body;
+    if (!email || !password) {
         return next(errorHandler(400, 'All fields are required'))
     }
     try {
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ email });
         if (user && bcryptjs.compareSync(password, user.password)) {
             res.status(200).json(user)
         } else {
