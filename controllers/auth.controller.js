@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import bcryptjs from 'bcryptjs';
 import { errorHandler } from "../utils/error.js";
+import jwt from 'jsonwebtoken'
 
 export const signup = async (req, res, next) => {
     const { username, email, password } = req.body;
@@ -29,6 +30,7 @@ export const signin = async (req, res, next) => {
     try {
         const user = await User.findOne({ email });
         if (user && bcryptjs.compareSync(password, user.password)) {
+            const token = jwt
             res.status(200).json(user)
         } else {
             res.status(401).json({
