@@ -38,13 +38,13 @@ export const signin = async (req, res, next) => {
                 },
                 process.env.JWT_SECRET,
                 {
-                    expiresIn: '1d'
+                    expiresIn: '10d'
                 }
             )
             res.status(200).cookie('access_token', token, {
                 expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 10),
                 httpOnly: true
-            })
+            }).json('SignIn Succsessfull')
         } else {
             res.status(401).json({
                 success: false,
