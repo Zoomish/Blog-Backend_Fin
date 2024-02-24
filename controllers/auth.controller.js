@@ -27,7 +27,16 @@ export const signin = async (req, res, next) => {
         return next(errorHandler(400, 'All fields are required'))
     }
     try {
-
+        const user = await User.findOne({ username });
+        if (user && bcryptjs.compareSync(password, user.password)) {
+            res.status(200).json(user)
+        } else {
+            res.status(401).json({
+                success: false,
+                status: 401,
+                message: 'Invalid credentials'
+            })
+        }
     } catch (error) {
         next(errorHandler(400, error))
     }
