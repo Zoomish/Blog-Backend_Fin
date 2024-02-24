@@ -30,7 +30,17 @@ export const signin = async (req, res, next) => {
     try {
         const user = await User.findOne({ email });
         if (user && bcryptjs.compareSync(password, user.password)) {
-            const token = jwt
+            const token = jwt.sign(
+                {
+                    id: user._id,
+                    username: user.username,
+                    email: user.email
+                },
+                process.env.JWT_SECRET,
+                {
+                    expiresIn: '1d'
+                }
+            )
             res.status(200).json(user)
         } else {
             res.status(401).json({
