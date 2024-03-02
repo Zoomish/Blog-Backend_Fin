@@ -74,7 +74,7 @@ export const google = async (req, res, next) => {
                     expiresIn: '10d'
                 }
             )
-
+        const { password, ...rest } = user._doc
         }
     } catch (error) {
         next(error)
