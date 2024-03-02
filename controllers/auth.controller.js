@@ -87,6 +87,7 @@ export const google = async (req, res, next) => {
                 username: name.toLowerCase().split(' ').join('') + Math.random().toString(9).slice(-4),
                 email,
                 password: hashedPassword,
+                profilePicture: googlePhotoUrl
             })
         }
     } catch (error) {
