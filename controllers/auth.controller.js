@@ -80,6 +80,9 @@ export const google = async (req, res, next) => {
             httpOnly: true
         }).json(rest)
         }
+        else {
+            
+        }
     } catch (error) {
         next(error)
     }
