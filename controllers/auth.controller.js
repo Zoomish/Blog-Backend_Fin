@@ -61,5 +61,23 @@ export const signin = async (req, res, next) => {
 }
 
 export const google = async (req, res, next) => {
-    const { email } = req.body;
+    const { name, email, googlePhotoUrl } = req.body;
+    try {
+        const user = await User.findOne({ email });
+        if (user) {
+            const token = jwt.sign(
+                {
+                    id: user._id,
+                    username: user.username,
+                    email: user.email
+                },
+                process.env.JWT_SECRET,
+                {
+                    expiresIn: '10d'
+                }
+            )
+        }
+    } catch (error) {
+        next(error)
+    }
 }
