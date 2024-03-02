@@ -67,15 +67,14 @@ export const google = async (req, res, next) => {
         if (user) {
             const token = jwt.sign(
                 {
-                    id: user._id,
-                    username: user.username
+                    id: user._id
                 },
                 process.env.JWT_SECRET,
                 {
                     expiresIn: '10d'
                 }
             )
-            
+
         }
     } catch (error) {
         next(error)
