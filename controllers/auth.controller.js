@@ -81,7 +81,13 @@ export const google = async (req, res, next) => {
         }).json(rest)
         }
         else {
-            
+            const generatedPassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8);
+            const newUser = new User({
+                username: name,
+                email,
+                image: googlePhotoUrl,
+                password: crypto.randomBytes(20).toString('hex')
+            })
         }
     } catch (error) {
         next(error)
