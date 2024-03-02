@@ -91,15 +91,6 @@ export const google = async (req, res, next) => {
             })
             await newUser.save();
             const { password, ...rest } = newUser._doc
-            const token = jwt.sign(
-                {
-                    id: newUser._id
-                },
-                process.env.JWT_SECRET,
-                {
-                    expiresIn: '10d'
-                }
-            )
             res.status(200).cookie('access_token', token, {
                 expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 10),
                 httpOnly: true
