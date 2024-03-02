@@ -59,3 +59,7 @@ export const signin = async (req, res, next) => {
         next(errorHandler(400, error))
     }
 }
+
+export const google = async (req, res, next) => {
+    const { email } = req.body;
+}
