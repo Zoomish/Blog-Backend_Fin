@@ -18,6 +18,7 @@ const PORT = process.env.PORT || 3000
 const HOST = process.env.HOST || 'localhost'
 
 app.use(express.json())
+app.use(cookieParser())
 app.listen(PORT, () => {
     console.log(`Server is running on http://${HOST}:${PORT}`)
 })
