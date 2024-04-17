@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import userRoute from './routes/user.route.js'
 import authRoute from './routes/auth.route.js'
+import cookieParser from 'cookie-parser'
 
 dotenv.config()
 
@@ -17,6 +18,7 @@ const PORT = process.env.PORT || 3000
 const HOST = process.env.HOST || 'localhost'
 
 app.use(express.json())
+app.use(cookieParser())
 app.listen(PORT, () => {
     console.log(`Server is running on http://${HOST}:${PORT}`)
 })
