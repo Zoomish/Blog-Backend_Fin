@@ -38,5 +38,9 @@ export const updateUser = (req, res, next) => {
             )
         }
     }
+    try {
+    } catch (error) {
+        next(error)
+    }
     console.log(req.user)
 }
