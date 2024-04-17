@@ -1,8 +1,12 @@
+import js from "@eslint/js";
+
 export default [
-  {
-      rules: {
-          "no-unused-vars": "error",
-          "no-undef": "error"
-      }
-  }
+    js.configs.recommended,
+
+   {
+       rules: {
+           "no-unused-vars": "warn",
+           "no-undef": "warn"
+       }
+   }
 ];
