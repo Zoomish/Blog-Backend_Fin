@@ -11,14 +11,21 @@ export const updateUser = (req, res, next) => {
     }
     if (req.body.params) {
         if (req.body.password.lenght < 6) {
-            return next(errorHandler(400, 'Password must be at least 6 characters'))
+            return next(
+                errorHandler(400, 'Password must be at least 6 characters')
+            )
         }
         req.body.password = bcryptjs.hashSync(req.body.password, 10)
     }
     if (req.body.username) {
         if (req.body.username.lenght < 7 || req.body.username.lenght > 20) {
-            return next(errorHandler(400, 'Username must be between 7 and 20 characters'))
+            return next(
+                errorHandler(
+                    400,
+                    'Username must be between 7 and 20 characters'
+                )
+            )
         }
     }
-    console.log(req.user);
+    console.log(req.user)
 }
