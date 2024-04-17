@@ -39,10 +39,15 @@ export const updateUser = async (req, res, next) => {
         }
     }
     try {
-        const updatedUser = req.body
-        const user = await User.findByIdAndUpdate(req.params.id, updatedUser, {
-            new: true,
-        })
+        const updatedUser = await User.findByIdAndUpdate(
+            req.params.id,
+            {
+                $set: req.body,
+            },
+            {
+                new: true,
+            }
+        )
         res.status(200).json(user)
     } catch (error) {
         next(error)
