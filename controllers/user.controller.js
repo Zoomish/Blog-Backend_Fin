@@ -1,5 +1,5 @@
 import bcryptjs from 'bcryptjs'
-import { errorHandler } from '../utils/errorHandler.js'
+import { errorHandler } from '../utils/error.js'
 
 export const test = (req, res) => {
     res.json({ message: 'Hello World' })
@@ -16,5 +16,4 @@ export const updateUser = (req, res, next) => {
         req.body.password = bcryptjs.hashSync(req.body.password, 10)
     }
     console.log(req.user);
-    res.json({ message: 'Update User' })
 }
