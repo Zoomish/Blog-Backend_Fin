@@ -11,7 +11,7 @@ export const updateUser = async (req, res, next) => {
         return next(errorHandler(403, 'You can update only your account'))
     }
     if (req.body.params) {
-        if (req.body.password.lenght < 6) {
+        if (req.body.password.length < 6) {
             return next(
                 errorHandler(400, 'Password must be at least 6 characters')
             )
@@ -19,7 +19,8 @@ export const updateUser = async (req, res, next) => {
         req.body.password = bcryptjs.hashSync(req.body.password, 10)
     }
     if (req.body.username) {
-        if (req.body.username.lenght < 7 || req.body.username.lenght > 20) {
+        console.log(req.body.username.length)
+        if (req.body.username.length < 7 || req.body.username.length > 20) {
             return next(
                 errorHandler(
                     400,
