@@ -26,6 +26,9 @@ export const updateUser = (req, res, next) => {
                 )
             )
         }
+        if (req.body.username.includes(' ')) {
+            return next(errorHandler(400, 'Username cannot contain spaces'))
+        }
     }
     console.log(req.user)
 }
