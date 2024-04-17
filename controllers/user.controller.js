@@ -15,5 +15,10 @@ export const updateUser = (req, res, next) => {
         }
         req.body.password = bcryptjs.hashSync(req.body.password, 10)
     }
+    if (req.body.username) {
+        if (req.body.username.lenght < 7 || req.body.username.lenght > 20) {
+            return next(errorHandler(400, 'Username must be between 7 and 20 characters'))
+        }
+    }
     console.log(req.user);
 }
