@@ -5,7 +5,7 @@ export const test = (req, res) => {
     res.json({ message: 'Hello World' })
 }
 
-export const updateUser = (req, res, next) => {
+export const updateUser = async (req, res, next) => {
     if (req.user.id !== req.params.id) {
         return next(errorHandler(403, 'You can update only your account'))
     }
@@ -39,6 +39,11 @@ export const updateUser = (req, res, next) => {
         }
     }
     try {
+        const updatedUser = req.body
+        const user = await User.findByIdAndUpdate(req.params.id, updatedUser, {
+            new: true,
+        })
+        res.status(200).json(user)
     } catch (error) {
         next(error)
     }
